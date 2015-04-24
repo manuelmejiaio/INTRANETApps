@@ -1,0 +1,19 @@
+﻿
+@{
+    Layout = null;
+}
+
+<table style="width:100%">
+    <col width="20%" />
+    <col width="50%" />
+    <col width="30%" />
+    @foreach (var person in ViewBag.birthdaysList)
+    {
+        <tr>
+            <td><small> @person.fecha_de_nacimiento.ToString().Substring(0, 5)</small>  </td>
+            <td><small> @person.nombre @person.apellido </small>  </td>
+            @*<td class="text-center"><a style="cursor: pointer;" class="text-center" onclick="modal('@person.nombre', '@person.apellido','@person.nombre_posicion', '@person.nombre_departamento', '@person.foto')">Detalles</a></td>*@
+            <td class="text-center"><a style="cursor: pointer;" class="text-center" onclick="modal('@person.nombre', '@person.apellido','@person.nombre_posicion', '@person.nombre_departamento')">Detalles</a></td>
+        </tr>
+    }
+</table>

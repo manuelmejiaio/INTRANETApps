@@ -1,0 +1,145 @@
+﻿@using System.Linq
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="birthdayApp">
+    <div class="birthdayHeader navbar-fixed-top">
+        <p style=" font-family:'comic sans ms';font-size:1.4em">
+            Cumpleaños
+            <img height="32" src="~/Images/cumpleanos/test.gif" />
+        </p>
+    </div>
+
+    <ul class="nav nav-tabs" style="margin-top:40px">
+        <li id="bottonToday" role="presentation" class="active"><a href="#">Hoy</a></li>
+        <li id="bottonWeek" role="presentation"><a href="#">Próximos</a></li>
+    </ul>
+    <div class="birthdayBody">
+        <div id="Today">
+            <table style="width:100%">
+                <col width="70%" />
+                <col width="30%" />
+
+                @{
+                    if (ViewBag.birthdaysList.Count == 0)
+                    {
+                        <tr><td>No hay cumpleaños...</td></tr>
+                    }
+                    else
+                    {
+                        foreach (var person in ViewBag.birthdaysList)
+                        {
+                            <tr>
+                                <td><small> @person.nombre @person.apellido</small>  </td>
+                                @*<td class="text-center"><a style="cursor: pointer;" class="text-center" onclick="modal('@person.nombre', '@person.apellido','@person.nombre_posicion','@person.nombre_departamento', '@person.foto')">Detalles</a></td>*@
+                                <td class="text-center"><a style="cursor: pointer;" class="text-center" onclick="modal('@person.nombre', '@person.apellido','@person.nombre_posicion','@person.nombre_departamento')">Detalles</a></td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+        <div id="Week">
+        </div>
+
+        <a id="SeeAll" href="#"><p style="text-align:center"> <b>Ver Todos</b></p></a>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background: #003963">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel" style="color:#ffffff">Detalles:</h4>
+            </div>
+            <div class="modal-body">
+                <div id="myBody">
+                    <b>NOMBRE:</b> <p style="font-size:10px" id="name"></p>
+                    <b>CARGO:</b><p style="font-size:10px" id="position"></p>
+                    <b>DEPARTAMENTO:</b><p style="font-size:10px" id="departament"></p>
+                    @*<img id="image" src="smiley.gif" height="72" width="72">*@
+                    <h5 id="Congratulation" class="pull-right btn btn-danger"><b>Felicitame!</b></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+ {
+    <script>
+
+        $("#bottonWeek").click(function () {
+            $("#bottonToday").removeClass("active");
+            $("#bottonWeek").addClass("active");
+            $("#Today").hide();
+            $("#Congratulation").hide();
+            $("#Week").show();
+            $("#Week").load('@Url.Action("WeekBirthdays", routeValues: new { controller = "Cumpleanos"})', null, null);
+        });
+        $("#bottonToday").click(function () {
+            $("#bottonWeek").removeClass("active");
+            $("#bottonToday").addClass("active");
+            $("#Congratulation").show();
+            $("#Week").hide();
+            $("#Today").show();
+        });
+
+        $("#SeeAll").click(function () {
+            window.top.location.href = "http://map.presidencia.local/intranet/portal/Pages/Todos-los-Cumplea%C3%B1os.aspx";
+        });
+
+
+        //<!-- Modal -->
+        //function modal(firstName, lastName, position, departament, image)
+        function modal(firstName, lastName, position, departament) {
+            document.getElementById("name").innerHTML = firstName + " " + lastName;
+            document.getElementById("position").innerHTML = position;
+            document.getElementById("departament").innerHTML = departament;
+            //document.getElementById("image").src = image;
+            $('#myModal').modal('show');
+        }
+    </script>
+}
+
+<style>
+    .birthdayHeader {
+        width: 100%;
+        height: 35px;
+        background: #003963;
+        color: white;
+        padding: 0px 0px 0px 10px;
+    }
+
+    .birthdayBody {
+        padding-left: 5px;
+        margin: 1% 0 5% 0;
+        /*border-bottom: 1px solid #b2b2b2;*/
+    }
+
+    table {
+        table-layout: fixed;
+    }
+
+    td {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+
+    #SeeAll {
+        position: fixed;
+        bottom: 0px;
+        left: -1px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+        overflow-y: auto;
+        background-color: #eee;
+    }
+</style>

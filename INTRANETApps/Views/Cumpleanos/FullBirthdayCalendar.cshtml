@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "FullBirthdayCalendar";
+}
+
+<link href="~/Content/fullcalendar.css" rel="stylesheet" />
+<link href="~/Content/fullcalendar.print.css" rel="stylesheet" media='print' />
+
+    
+<div id='calendar'></div>
+
+    <img style="width:100%;" src="~/Images/cumpleanos/marco_ feliz_cumpleanos.png" />
+
+
+
+
+@section Scripts
+ {
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/fullcalendar.min.js"></script>
+    <script src="~/Scripts/lang-all.js"></script>
+    <script>
+
+        var birthdaysList = @Html.Raw(Json.Encode(@ViewBag.birthdaysList));
+
+        function FixDate() {
+            var birthday = birthdaysList[i].fecha_de_nacimiento;
+            var fixBirthday = parseInt(birthday .replace("/Date(", "").replace(")/", "")); // para quitar los caracteres no deseados.
+            var formatedToDate = new Date(fixBirthday);
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = formatedToDate.getMonth() + 1;
+            var date = formatedToDate.getDate();
+            var fullDate = year + " " + month + " " + date ;
+            return(fullDate) ;
+        }
+
+
+
+        var events = [];
+        for(var i =0; i < birthdaysList.length; i++) {
+            events.push( {title:birthdaysList[i].nombre + " " + birthdaysList[i].apellido, start: FixDate(), tip: birthdaysList[i].nombre + " " + birthdaysList[i].apellido})
+        }
+
+
+        $(document).ready(function () {
+
+            $('#calendar').fullCalendar({
+                lang: 'es',
+                header: {
+                    left: 'title',
+                    center: '',
+                    right: 'prev,next today'
+                    //right: 'month,agendaWeek,agendaDay'
+                },
+                //defaultDate: '2014-11-12',
+                //editable: true,
+                eventLimit: true, // allow "more" link when too many events
+
+
+                events: events,
+                eventRender: function(event, element) {element.attr('title', event.tip); }
+
+            });
+        });
+
+    </script>
+}
+
+<style>
+    #calendar {
+        position: absolute;
+        width: 80%;
+        /*margin: 0 auto;*/
+        border: 5px solid #003963;
+
+        top: 13%;
+        left:10%
+    }
+</style>
+
+
+

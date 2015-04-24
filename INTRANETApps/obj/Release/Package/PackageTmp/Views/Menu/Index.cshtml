@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div style="text-align:center;position:relative;">
+    <img id="Frame" src="~/Images/menu/menu.png" />
+
+
+    <div id="Menu">
+
+        @*@foreach (var menu in ViewBag.menuList)
+            {
+                <div onload="EstructuracionDelMenu(@menu.contenido)"></div>
+            }*@
+    </div>
+
+
+
+
+    @*<div id="Menu">
+            <h2><b>*Arroces</b></h2>
+            <h3>Arroz blanco</h3>
+            <h3>Arroz amarillo</h3><br />
+
+            <h2><b>*Legumbres</b></h2>
+            <h3>Habichuela blanca</h3>
+            <h3>Habichuela roja</h3><br />
+
+            <h2><b>*Carnes</b></h2>
+            <h3>Pollo al horno</h3>
+            <h3>Pollo guisado</h3>
+            <h3>Chuleta Agridulce</h3><br />
+
+            <h2><b>*Otros</b></h2>
+            <h3>Guineíto</h3>
+            <h3>Arepas de yuca</h3>
+
+        </div>*@
+</div>
+
+<style>
+    #Frame {
+        width: 85%;
+    }
+
+    #Menu {
+        position: absolute;
+        top: 5%;
+        right: 12%;
+        width: 36%;
+        text-align: center;
+    }
+
+    h3 {
+        line-height: 50%;
+    }
+</style>
+
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    $(document).ready(function () {
+        var menuListArray = @Html.Raw(Json.Encode(@ViewBag.menuList));
+
+
+        for (i = 0; i < menuListArray.length; i++) {
+
+            var stringMenu = "";
+            var str = menuListArray[i].contenido;
+            var split1 = str.split("*");
+
+            for (var x = 0; x < split1.length; x++) {
+
+                split1[x] = split1[x] + "</br> </br> </br></br>"; //para agregar espacio al ultimo elemento de cada categoria (tendra 2)
+
+                var split2 = split1[x].split(".");
+
+                for (var y = 0; y < split2.length; y++) {
+                    split2[0] = "<h2>" + "<b>" + split2[0].toUpperCase() + "</b>" + "</h2>";
+
+                    stringMenu +=  "<h3>" + split2[y]  + "</h3>" ;//para agregar espacio al ultimo elemento y titulo (tendra 1)
+                }
+            }
+
+            document.getElementById("Menu").innerHTML = stringMenu;
+        }
+
+    });
+
+
+</script>
