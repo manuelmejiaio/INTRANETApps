@@ -53,3 +53,5 @@ C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANE
 C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Debug\INTRANETApps.dll
 C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Debug\INTRANETApps.pdb
+C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Debug\INTRANETApps.Migrations.InitialCreate.resources
+C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Debug\INTRANETApps.csproj.GenerateResource.Cache

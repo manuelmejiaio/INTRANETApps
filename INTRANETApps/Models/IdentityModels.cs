@@ -21,9 +21,13 @@ namespace INTRANETApps.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
         }
+
+
+        public DbSet<ADUsersModel> ADUsers { get; set; }
+
 
         public static ApplicationDbContext Create()
         {

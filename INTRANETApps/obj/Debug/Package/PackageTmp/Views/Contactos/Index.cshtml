@@ -1,0 +1,90 @@
+﻿@model IEnumerable<INTRANETApps.Models.ADUsersModel>
+@using INTRANETApps.Models
+
+
+
+<link href="~/Content/JqueryDataTable/DT_bootstrap.css" rel="stylesheet" />
+
+<div>
+    <table class="table table-striped table-bordered " id="MyTable" cellpadding="0" cellspacing="0" border="0">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    Nombre
+                </th>
+
+                <th class="text-center">
+                    Apellido
+                </th>
+
+                <th class="text-center ">
+                    Extensión
+                </th>
+                <th class="text-center">
+                    Cargo
+                </th>
+                <th class="text-center">
+                    Email
+                </th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.userName)</p>
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.userLastName)</p>
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.extension)</p>
+                    </td>
+                    <td>
+                        <p>@Html.DisplayFor(modelItem => item.posicion)</p>
+                    </td>
+                    <td>
+                        <p style="text-transform: lowercase;">@Html.DisplayFor(modelItem => item.email)</p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts
+ {
+    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            //La tabla.
+            var oTable = $('#MyTable').dataTable({
+                "info": false,
+                "bLengthChange": true,
+                "aLengthMenu": [[15, 30, 60, 120], [15, 30, 60, 120]],
+                "iDisplayLength": 15,
+                "bSort": false, // para que jquery no sea quien organice la tabla
+                "language": {
+                    "lengthMenu": "Muestra _MENU_ resultados",
+                    "zeroRecords": "No hay resultados...",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "next": "Siguiente >",
+                        "previous": "< Anterior "
+                    }
+                }
+            });
+        });
+    </script>
+}
+<style>
+    .table > thead:first-child > tr:first-child > th {
+        background-color: #003963;
+        color: white;
+        font-weight: bold;
+    }
+</style>

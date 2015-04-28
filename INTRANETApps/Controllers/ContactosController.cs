@@ -20,7 +20,7 @@ namespace INTRANETApps.Controllers
             {
                 using (var searcher = new PrincipalSearcher(new UserPrincipal(context)))
                 {
-                    
+
                     foreach (var result in searcher.FindAll())
                     {
                         ADUsersModel ADModel = new ADUsersModel();

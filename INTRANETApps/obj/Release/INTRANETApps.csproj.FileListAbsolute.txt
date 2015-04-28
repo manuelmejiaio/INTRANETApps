@@ -53,3 +53,5 @@ C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANE
 C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Release\INTRANETApps.csprojResolveAssemblyReference.cache
 C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Release\INTRANETApps.dll
 C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Release\INTRANETApps.pdb
+C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Release\INTRANETApps.Migrations.InitialCreate.resources
+C:\Users\Manuel Mejia\Documents\Visual Studio 2013\Projects\INTRANETApps\INTRANETApps\obj\Release\INTRANETApps.csproj.GenerateResource.Cache
